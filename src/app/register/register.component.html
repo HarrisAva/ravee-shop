@@ -1,1 +1,96 @@
-<p>register works!</p>
+<div class="container mt-5 mb-5">
+  <main class="form-signin w-25 m-auto">
+    <form [formGroup]="signupForm">
+      <div class="text-center">
+        <img class="mb-4" src="xxx" alt="" width="72" height="57" />
+      </div>
+
+      <h1 class="h3 mb-3 fw-normal text-center">Register</h1>
+
+      <div class="form-floating mb-2">
+        <input
+          formControlName="firstName"
+          name="firstName"
+          type="firstName"
+          class="form-control"
+          id="floatingInput"
+        />
+        <label for="floatingInput">First Name</label>
+        @if(submitted && signupForm.controls['firstName'].errors){
+        @if(signupForm.controls['firstName'].errors['required']){
+        <div class="text-danger my-2">Please input your first name</div>
+        } }
+      </div>
+
+      <div class="form-floating mb-2">
+        <input
+          formControlName="lastName"
+          name="lastName"
+          type="lastName"
+          class="form-control"
+          id="floatingInput"
+        />
+        <label for="floatingInput">Last Name</label>
+        @if(submitted && signupForm.controls['lastName'].errors){
+        @if(signupForm.controls['lastName'].errors['required']){
+        <div class="text-danger my-2">Please input your last name</div>
+        } }
+      </div>
+
+      <div class="form-floating mb-2">
+        <input
+          formControlName="email"
+          name="email"
+          type="email"
+          class="form-control"
+          id="floatingInput"
+        />
+        <label for="floatingInput">Email</label>
+        @if(submitted && signupForm.controls['email'].errors){
+        @if(signupForm.controls['email'].errors['required']){
+        <div class="text-danger my-2">Please input an email</div>
+        } @if(signupForm.controls['email'].errors['email']){
+        <div class="text-danger my-2">Incorrect email format</div>
+        } }
+      </div>
+
+      <div class="form-floating">
+        <input
+          formControlName="password"
+          name="password"
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+        />
+        <label for="floatingPassword">Password</label>
+        @if(submitted && signupForm.controls['password'].errors){
+        @if(signupForm.controls['password'].errors['required']){
+        <div class="text-danger my-2">Please input a password</div>
+        } @if(signupForm.controls['password'].errors['minlength']){
+        <div class="text-danger my-2">
+          Password should be at least 6 characters
+        </div>
+        } }
+      </div>
+
+      <button
+        class="btn btn-primary w-100 py-2"
+        type="submit"
+        (click)="submitSignup()"
+      >
+        Sign up
+      </button>
+
+      <button
+        class="btn btn-warning w-100 py-2 mt-2"
+        type="submit"
+        (click)="resetForm()"
+      >
+        Reset
+      </button>
+
+      <!-- {{ userSignup.email }}
+          {{ userSignup.password }} -->
+    </form>
+  </main>
+</div>
