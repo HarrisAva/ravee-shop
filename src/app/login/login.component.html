@@ -1,11 +1,18 @@
 <div class="container mt-5 mb-5">
-  <main class="form-signin w-25 m-auto">
+  <main class="form-signin col-md-4 offset-md-4">
     <form [formGroup]="loginForm">
       <div class="text-center">
-        <img class="mb-4" src="xxx" alt="" width="72" height="57" />
+        <img
+          class="mb-4"
+          ngSrc="assets/images/aavelogo.webp"
+          alt=""
+          width="100"
+          height="100"
+          priority
+        />
       </div>
 
-      <h1 class="h3 mb-3 fw-normal text-center">Login</h1>
+      <h1 class="h3 mb-3 fw-normal text-center">Log In</h1>
 
       <div class="form-floating mb-2">
         <input
@@ -13,8 +20,15 @@
           name="email"
           type="email"
           class="form-control"
+          [class]="{
+            'is-invalid': submitted && loginForm.controls['email'].invalid
+          }"
+          placeholder="Email"
           id="floatingInput"
+          #emailInput
+          autofocus
         />
+
         <label for="floatingInput">Email</label>
         @if(submitted && loginForm.controls['email'].errors){
         @if(loginForm.controls['email'].errors['required']){
@@ -29,10 +43,24 @@
           formControlName="password"
           name="password"
           type="password"
+          [type]="hide ? 'password' : 'text'"
           class="form-control"
+          [class]="{
+            'is-invalid': submitted && loginForm.controls['password'].invalid
+          }"
+          placeholder="Password"
           id="floatingPassword"
+          #passwordInput
         />
         <label for="floatingPassword">Password</label>
+        <!-- Icon to toggle password visibility -->
+        <span
+          class="position-absolute top-50 end-0 translate-middle-y p-2 me-2"
+          style="cursor: pointer"
+          (click)="hide = !hide"
+        >
+          <i [class]="hide ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+        </span>
         @if(submitted && loginForm.controls['password'].errors){
         @if(loginForm.controls['password'].errors['required']){
         <div class="text-danger my-2">Please enter a password</div>
@@ -60,7 +88,7 @@
         type="submit"
         (click)="submitLogin()"
       >
-        Sign in
+        Submit
       </button>
 
       <button

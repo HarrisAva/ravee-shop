@@ -5,7 +5,7 @@
         <img class="mb-4" src="xxx" alt="" width="72" height="57" />
       </div>
 
-      <h1 class="h3 mb-3 fw-normal text-center">Register</h1>
+      <h1 class="h3 mb-3 fw-normal text-center">Sign Up</h1>
 
       <div class="form-floating mb-2">
         <input
@@ -54,7 +54,7 @@
         } }
       </div>
 
-      <div class="form-floating">
+      <div class="form-floating mb-2">
         <input
           formControlName="password"
           name="password"
@@ -72,22 +72,23 @@
         </div>
         } }
       </div>
+      <div class="form-floating mb-2">
+        <button
+          class="btn btn-primary w-100 py-2"
+          type="submit"
+          (click)="submitSignup()"
+        >
+          Submit
+        </button>
 
-      <button
-        class="btn btn-primary w-100 py-2"
-        type="submit"
-        (click)="submitSignup()"
-      >
-        Sign up
-      </button>
-
-      <button
-        class="btn btn-warning w-100 py-2 mt-2"
-        type="submit"
-        (click)="resetForm()"
-      >
-        Reset
-      </button>
+        <button
+          class="btn btn-warning w-100 py-2 mt-2"
+          type="submit"
+          (click)="resetForm()"
+        >
+          Reset
+        </button>
+      </div>
 
       <!-- {{ userSignup.email }}
           {{ userSignup.password }} -->

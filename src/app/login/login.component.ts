@@ -1,4 +1,5 @@
-import { Component } from '@angular/core'
+import { NgOptimizedImage } from '@angular/common'
+import { Component, ElementRef, ViewChild } from '@angular/core'
 import {
   ReactiveFormsModule,
   FormsModule,
@@ -6,11 +7,12 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms'
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, NgOptimizedImage],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -21,11 +23,16 @@ export class LoginComponent {
   // check if user submits form or not
   submitted = false
 
+  // toggle password visibility
+  hide = true
+
   // form data
   userLogin = {
     "email": "",
     "password": ""
   }
+
+  @ViewChild('emailInput') emailInput!: ElementRef  //use ViewChild to find element in template
 
   // Constructor
   constructor(
@@ -53,9 +60,21 @@ export class LoginComponent {
       this.userLogin.password = this.loginForm.value.password
 
       if(this.userLogin.email == "test@email.com" && this.userLogin.password == "password"){
-        alert("Login Success")
+        // alert("Login Success")
+        Swal.fire({
+          title: 'เข้าสู่ระบบสำเร็จ',
+          text: 'ยินดีต้อนรับเข้าสู่ระบบ Stock Management',
+          icon: 'success',
+          confirmButtonText: 'OK'
+        })
       } else {
-        alert("Login Fail")
+        // alert("Login Fail")
+        Swal.fire({
+          title: 'มีข้อผิดพลาด',
+          text: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        })
       }
 
     }
@@ -64,6 +83,9 @@ export class LoginComponent {
   resetForm(){
     this.submitted = false
     this.loginForm.reset()
+
+    // focus on email input
+    this.emailInput.nativeElement.focus()
   }
 
 }
