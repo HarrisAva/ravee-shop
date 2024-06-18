@@ -61,17 +61,19 @@ export class LoginComponent {
 
       if(this.userLogin.email == "test@email.com" && this.userLogin.password == "password"){
         // alert("Login Success")
+
+        // alert popup for success("Login Success")
         Swal.fire({
-          title: 'เข้าสู่ระบบสำเร็จ',
-          text: 'ยินดีต้อนรับเข้าสู่ระบบ Stock Management',
+          title: 'Login Success',
+          text: 'Welcome to RaveeOfTitans',
           icon: 'success',
           confirmButtonText: 'OK'
         })
       } else {
-        // alert("Login Fail")
+        // alert popup for error("Login Fail")
         Swal.fire({
-          title: 'มีข้อผิดพลาด',
-          text: 'อีเมลหรือรหัสผ่านไม่ถูกต้อง',
+          title: 'Something went wrong',
+          text: 'email or password is incorrect',
           icon: 'error',
           confirmButtonText: 'OK'
         })
